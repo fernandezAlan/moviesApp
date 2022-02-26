@@ -1,0 +1,29 @@
+.img_poster{
+    width:370px;
+    height: 556px;
+}
+.container{
+    display:flex
+}
+.sub_container{
+    display: flex;
+    flex-direction: column;
+}
+.overview{
+    width: 40vw;
+    margin: 20px;
+    background-color: #80808042;
+    padding: 20px;
+}
+.title_movie{
+    text-align: center;
+}
+.genre_container{
+    display: flex;
+    justify-content: center;
+}
+.actors_container{
+    display: flex;
+    width: 40vw;
+    justify-content: space-around;
+}
