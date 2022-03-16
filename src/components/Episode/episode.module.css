@@ -1,0 +1,13 @@
+
+
+.img_container{
+    width: 150px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+}
+.overview_container{
+    width:150px;
+    color: white;
+    background-color: #009688;
+}

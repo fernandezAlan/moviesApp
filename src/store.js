@@ -11,9 +11,14 @@
 */
 import { configureStore } from '@reduxjs/toolkit';
 import { moviesSlice } from './reducers/moviesReducer';
-
+import {tvSeriesSlice} from './reducers/TvShowsReducer'
+import {PersonSlice} from './reducers/PersonReducer'
+import { collectionSlice } from './reducers/CollectionReducer';
 export default configureStore({
   reducer: {
     movies: moviesSlice.reducer,
+    tvSeries: tvSeriesSlice.reducer,
+    person:PersonSlice.reducer,
+    collection:collectionSlice.reducer
   },
 });

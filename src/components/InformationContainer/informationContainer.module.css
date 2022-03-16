@@ -1,0 +1,28 @@
+.container {
+    width: 450px;
+    height: 200px;
+    background: #610094;
+    padding: 10px;
+    text-align: start;
+    display: flex;
+    align-items: center;
+}
+.information{
+    width: 100%;
+    height: 150px;
+    padding: 15px;
+    overflow-y: scroll
+}
+.information::-webkit-scrollbar {
+    width: 5px;               /* width of the entire scrollbar */
+  }
+  
+  .information::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+  }
+  
+  .information::-webkit-scrollbar-thumb {
+    background-color: white;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    
+  }

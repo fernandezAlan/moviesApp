@@ -1,0 +1,14 @@
+.bar{
+    height: 60px;
+    background-color: #6000947e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+.bar:hover{
+    background-color: #610094;
+}

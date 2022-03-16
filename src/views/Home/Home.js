@@ -5,10 +5,10 @@ const Home = ()=>{
    
 return(
     <div className={classes.container}>
-            <Link to="/movies">
+            <Link to="/movie">
                 <button className={classes.button}>Películas</button>
             </Link>
-            <Link to="/tvseries">
+            <Link to="/tv">
                 <button className={classes.button}>series de televisión</button>
             </Link>
     </div>

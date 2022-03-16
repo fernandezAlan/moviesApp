@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.container{
+    width: 100vw;
+    height: 100%;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(134.95deg, rgba(0, 0, 0, 0.2) 33.66%, rgba(97, 0, 148, 0.2) 68.04%), linear-gradient(237.96deg, #000000 49.28%, #150050 108.79%);
+    color: white;
+    text-align: center;
+}
+

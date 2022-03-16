@@ -1,6 +1,48 @@
-.container{
+
+.movie_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.sub_container{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    font-family: sans-serif;
+    width: 50vw;
+    height: 60vh;
+    overflow-y:scroll;
 }
+.title{
+    font-weight: lighter;
+}
+
+.movie_search{
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+.selection_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+}
+.bars_container{
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sub_container::-webkit-scrollbar {
+    width: 5px;               /* width of the entire scrollbar */
+  }
+  
+  .sub_container::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+  }
+  
+  .sub_container::-webkit-scrollbar-thumb {
+    background-color: #610094;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    
+  }

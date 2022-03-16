@@ -1,0 +1,23 @@
+.container{
+    width: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+.div{
+    height: 20px;
+    width: 3px;
+    background-color: #610094;
+}
+.img_director{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50px;
+    border: solid 3px #610094;
+}
+.name{
+    min-height: 50px;
+}
+

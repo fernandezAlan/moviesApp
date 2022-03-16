@@ -1,4 +1,9 @@
 .genre{
-    margin: 10px;
-    color: gray
+    background-color: #610094;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    height: 40px;
 }

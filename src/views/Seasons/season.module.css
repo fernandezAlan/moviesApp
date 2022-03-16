@@ -1,0 +1,38 @@
+.container{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.sub_container{
+    display: flex;
+    width: 80vw;
+    height: 80vh;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.img_container{
+    width: 150px;
+    height: 200px;
+}
+.content_container{
+    margin: 10px;
+    cursor: pointer;
+}
+.sub_container::-webkit-scrollbar {
+    width: 5px;               /* width of the entire scrollbar */
+  }
+  
+  .sub_container::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+  }
+  
+  .sub_container::-webkit-scrollbar-thumb {
+    background-color: white;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    
+  }

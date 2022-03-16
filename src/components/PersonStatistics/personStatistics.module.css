@@ -1,0 +1,7 @@
+.departament{
+    color: gray;
+}
+.extra_information{
+    display: flex;
+    flex-direction: column;
+}

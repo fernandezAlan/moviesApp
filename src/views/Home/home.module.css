@@ -8,7 +8,7 @@
 
 .button{
     margin: 30px;
-    background-color: #673ab7;
+    background-color: #009688;
     color: white;
     border: solid 0px;
     height: 40px;
@@ -17,5 +17,5 @@
     cursor: pointer;
 }
 .button:active{
-    background-color: #4505b3;
+    background-color: #006157;
 }

@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:60px ;
+}
+.previos_container{
+    display: flex;
+}
+.show_more{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: #600094e0;
+    border-radius: 30px;
+    align-items: center;
+    font-size: 40px;
+}
+.show_more_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

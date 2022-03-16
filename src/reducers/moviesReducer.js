@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import {getMovies,selectedMovie,getMovieCredits} from '../api/getMovies';
+import {getMovies,selectedMovie,getMovieCredits,searchMovie} from '../api/getMovies';
+import { getMovieGenres } from '../api/genres';
 //const initialState = { movies: "aun no hay movies aqui!" };
 
 export default function reducer (state = initialState, action) {
@@ -14,14 +15,18 @@ export default function reducer (state = initialState, action) {
 const initialState = {
   allMovies:[],
   selectedMovie:null,
-  movieCredits:null
+  movieCredits:null,
+  moviesGenres:null
 }
 
 export const setMovies = createAsyncThunk(
   'UPDATE_MOVIES',
   async()=>await getMovies()
 )
-
+export const addMovieGenres= createAsyncThunk(
+  'ADD_MOVIE_GENRES',
+  async()=>await getMovieGenres()
+)
 export const selectMovie= createAsyncThunk(
   'SELECT_MOVIE',
   async(movieId)=>await selectedMovie(movieId)
@@ -31,11 +36,18 @@ export const getCredits = createAsyncThunk(
   async (movieId) => await getMovieCredits(movieId)
 )
 
+export const addFindMovie = createAsyncThunk(
+  'ADD_FIND_MOVIES',
+  async (movieName)=> await searchMovie(movieName) 
+)
+
 export const moviesSlice = createSlice({
   name:'movies',
   initialState,
   reducers:{
-    addMovies:(state,action)=>state.allMovies=action.payload.movies  
+    clearSelectedMovie:(state,action)=>{
+      state.selectedMovie=null
+    }  
   },
   extraReducers:(builder)=>{
     builder.addCase(
@@ -50,10 +62,20 @@ export const moviesSlice = createSlice({
       getCredits.fulfilled,
       (state,action)=>{
         action.payload.cast.length=4
-        const director = action.payload.crew.find(e=>e.job==='Director')
+        const director = action.payload.crew.filter(e=>e.job==='Director')
         action.payload.director = director
         state.movieCredits= action.payload
       }
     )
+    .addCase(
+      addFindMovie.fulfilled,
+      (state,action)=>{state.allMovies= action.payload}
+    )
+    .addCase(
+      addMovieGenres.fulfilled,
+      (state,action)=>{state.moviesGenres= action.payload}
+    )
   }
 })
+
+export const {clearSelectedMovie} = moviesSlice.actions
