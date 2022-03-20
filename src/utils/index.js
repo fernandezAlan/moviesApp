@@ -112,3 +112,21 @@ export  const job = {
   Acting: ["actriz", "actor"],
   Directing: ["Directora","Director"],
 };
+export const filters = [
+  {
+    label: "populares",
+    type: 'popular',
+  },
+  {
+    label: "mejores",
+    type: 'top_rated',
+  },
+  {
+    label: "en cartelera",
+    type: 'now_playing',
+  },
+  {
+    label: "próximos estrenos",
+    type: 'upcoming',
+  },
+];

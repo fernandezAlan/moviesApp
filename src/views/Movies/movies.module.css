@@ -9,7 +9,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 50vw;
+    width: 60vw;
     height: 60vh;
     overflow-y:scroll;
 }
@@ -45,4 +45,7 @@
     background-color: #610094;    /* color of the scroll thumb */
     border-radius: 20px;       /* roundness of the scroll thumb */
     
+  }
+  .filters{
+      margin: 5px;
   }

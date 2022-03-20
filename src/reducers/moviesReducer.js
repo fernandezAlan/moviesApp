@@ -21,7 +21,7 @@ const initialState = {
 
 export const setMovies = createAsyncThunk(
   'UPDATE_MOVIES',
-  async()=>await getMovies()
+  async(type)=>await getMovies(type)
 )
 export const addMovieGenres= createAsyncThunk(
   'ADD_MOVIE_GENRES',
