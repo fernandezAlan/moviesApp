@@ -9,11 +9,8 @@ const Navbar = () => {
         <div className={classes.background}>
         </div>
           <section className={classes.link_container}>
-            <Link to="/">
-              <span>Inicio</span>
-            </Link>
             <Link to="/movie">
-              <span className={classes.selected}>Películas</span>
+              <span>Películas</span>
             </Link>
             <Link to="/tv">
               <span>Series</span>

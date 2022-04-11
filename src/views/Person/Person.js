@@ -38,10 +38,6 @@ const Person = () => {
     <div>
       {selectedPerson && personCredits ? (
         <div className={classes.actor_container}>
-          <section className={classes.MP_container}>
-            <MorePopular type={"película"} />
-            <MorePopular type={"serie"} />
-          </section>
           <section className={classes.sub_container}>
             <div className={classes.circle_container}>
               <div className={classes.circle_bg}></div>

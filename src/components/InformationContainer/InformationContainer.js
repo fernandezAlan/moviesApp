@@ -1,14 +1,16 @@
 import React from "react";
-import classes from './informationContainer.module.css'
+import classes from "./informationContainer.module.css";
 
-const InformationContainer = ({information})=>{
+const InformationContainer = ({ information }) => {
+  return (
+    <section className={classes.container}>
+      {information ? (
+        <p className={classes.information}>{information}</p>
+      ) : (
+        <p className={classes.information}>información no disponible</p>
+      )}
+    </section>
+  );
+};
 
-return(
-<section className={classes.container}>
-    <p className={classes.information}>{information}</p>
-</section>
-)
-
-}
-
-export default InformationContainer
+export default InformationContainer;

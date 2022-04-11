@@ -111,6 +111,7 @@ export   const getRecurrentGenre = ({movies,allGenres})=>{
 export  const job = {
   Acting: ["actriz", "actor"],
   Directing: ["Directora","Director"],
+  Production:["Productora","Productor"]
 };
 export const filters = [
   {

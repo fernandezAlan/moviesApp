@@ -63,6 +63,7 @@ export const moviesSlice = createSlice({
       (state,action)=>{
         action.payload.cast.length=4
         const director = action.payload.crew.filter(e=>e.job==='Director')
+        director.length = 3
         action.payload.director = director
         state.movieCredits= action.payload
       }

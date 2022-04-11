@@ -14,12 +14,7 @@ const PersonStatistics = () => {
     movies: departament === "Acting" ? personCredits.cast : personCredits.crew,
     allGenres,
   });
-  console.log("PersonStatistics", {
-    selectedPerson,
-    personCredits,
-    recurrentGenre,
-  });
-
+console.log('debug',{job,departament,genre})
   return (
     <div>
       <h2>{selectedPerson.name}</h2>
