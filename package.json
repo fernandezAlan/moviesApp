@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "webpack-dev-server": "webpack-dev-server",
+    "build": "react-scripts build",
     "dev": "webpack-dev-server --mode=development",
-    "start": "webpack --mode=production",
+    "start": "react-scripts start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -34,6 +34,8 @@
     "react-icons": "^3.9.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^6.2.1",
+    "react-script": "^2.0.5",
+    "react-scripts": "^5.0.1",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
@@ -55,5 +57,17 @@
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
