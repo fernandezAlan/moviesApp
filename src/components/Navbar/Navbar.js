@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import classes from "./navbar.module.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import SearchInput from "../SearchInput/SearchInput";
+import { PrincipalTitle } from "../../styledComponents/texts/texts";
+import { Container } from "../../styledComponents/containers/containers";
 const Navbar = () => {
+  const navigate = useNavigate()
   return (
-    <nav className={classes.nabvar_container}>
-      <div className={classes.container}>
-        <section className={classes.title}>
-          <h1>
-            Movie App
-          </h1>
-        </section>
-      </div>
-    </nav>
+    <Container onClick={()=>navigate('/')}>
+        <PrincipalTitle>MOVIE APP</PrincipalTitle>
+        <img
+          style={{
+            width: "50px",
+            height: "50px",
+            margin: "10px",
+          }}
+          src="./icon_title.png"
+        />
+    </Container>
   );
 };
 

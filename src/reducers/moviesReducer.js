@@ -26,7 +26,7 @@ const initialState = {
 
 export const setMovies = createAsyncThunk(
   'UPDATE_MOVIES',
-  async(type)=>await getMovies(type)
+  async(data)=>await getMovies(data)
 )
 export const addMovieGenres= createAsyncThunk(
   'ADD_MOVIE_GENRES',
@@ -58,7 +58,9 @@ export const moviesSlice = createSlice({
     builder.addCase(
       setMovies.fulfilled,
       (state,action)=>{
-        state.allMovies[action.meta.arg]= action.payload
+        console.log('arg:',action.meta.arg)
+        const {type,page} = action.meta.arg
+        state.allMovies[type][page]= action.payload
       }
     )
     .addCase(

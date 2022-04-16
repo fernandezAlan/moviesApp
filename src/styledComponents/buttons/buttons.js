@@ -1,5 +1,14 @@
 import styled from "styled-components";
-
+export const NextPrevButton = styled.button`
+width:30px;
+height:30px;
+background-color:#610094;
+color:white;
+border:0px;
+border-radius:30px;
+cursor:pointer;
+margin:5px
+`
 export const ButtonFilter = styled.button`
   margin: 10px;
   background-color: transparent;
