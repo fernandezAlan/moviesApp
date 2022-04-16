@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./previousTitles.module.css";
-import MoviesContainer from "../MoviesContainer/MoviesContainer";
+import TitleContainer from "../TitleContainer/TitleContainer";
 import { useNavigate } from "react-router-dom";
 const PreviousTitles = ({ titles, type, name }) => {
   const paths = {
@@ -18,7 +18,7 @@ const PreviousTitles = ({ titles, type, name }) => {
       </h6>
       <section className={classes.previos_container}>
         {titles.map((title) => (
-          <MoviesContainer
+          <TitleContainer
             size={"s"}
             imgURL={title.poster_path}
             name={title.title ? title.title : title.name}

@@ -1,23 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./navbar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SearchInput from "../SearchInput/SearchInput";
 const Navbar = () => {
   return (
-    <div className={classes.nabvar_container}>
+    <nav className={classes.nabvar_container}>
       <div className={classes.container}>
-        <div className={classes.background}>
-        </div>
-          <section className={classes.link_container}>
-            <Link to="/movie">
-              <span>Películas</span>
-            </Link>
-            <Link to="/tv">
-              <span>Series</span>
-            </Link>
-          </section>
+        <section className={classes.title}>
+          <h1>
+            Movie App
+          </h1>
+        </section>
       </div>
-    </div>
+    </nav>
   );
 };
 

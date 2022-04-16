@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './moviesContainer.module.css'
 import {toggleElement} from '../../utils/index'
-const MoviesContainer=({imgURL,name, selectMovieHandle, size})=>{
+const TitleContainer=({imgURL,name, selectMovieHandle, size})=>{
 
     const AllSizes={
         's':'70px',
@@ -31,4 +31,4 @@ return(
     </section>
 )
 }
-export default MoviesContainer
+export default TitleContainer

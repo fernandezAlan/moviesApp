@@ -8,7 +8,6 @@ import {
   clearSelectedPerson,
 } from "../../reducers/PersonReducer";
 import { useNavigate } from "react-router-dom";
-import MoviesContainer from "../../components/MoviesContainer/MoviesContainer";
 import Image from "../../components/Images/Images";
 import InformationContainer from "../../components/InformationContainer/InformationContainer";
 import MorePopular from "../../components/MorePopular/MorePopular";

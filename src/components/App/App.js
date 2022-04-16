@@ -16,7 +16,7 @@ const App = () => {
     <div className={classes.container}>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Navigate replace to="/movie"/>} />
+        <Route path="/" element={<Home/>} />
         <Route path="/movie" element={<Movies />} />
         <Route path="/movie/:id" element={<SelectedMovie />} />
         <Route path="/tv/:id" element={<SelectedTvSerie />}  />

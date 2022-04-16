@@ -1,13 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
-  getPopularTvSeries,
+  getTvSeries,
   selectTvSerie,
   getTvSerieCredits,
   getSeasonDetails,
 } from "../api/getTvSeries";
 
 const initialState = {
-  popularTvSeries: null,
+  TvSeries: {
+    popular:{},
+    top_rated:{},
+    on_the_air:{},
+  },
   selectedTvSerie: null,
   selectedTvSerieCredits: null,
   tvSerieCredits: null,
@@ -15,8 +19,8 @@ const initialState = {
 };
 
 export const AddPopularTvSeries = createAsyncThunk(
-  "UPDATE_POPULAR_TV_SERIES",
-  async () => await getPopularTvSeries()
+  "UPDATE_TV_SERIES",
+  async (type) => await getTvSeries(type)
 );
 export const addSelectedTvSerie = createAsyncThunk(
   "SELECT_TV_SERIE",
@@ -49,7 +53,7 @@ export const tvSeriesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(AddPopularTvSeries.fulfilled, (state, action) => {
-        state.popularTvSeries = action.payload;
+        state.TvSeries[action.meta.arg] = action.payload;
       })
       .addCase(addSelectedTvSerie.fulfilled, (state, action) => {
         state.selectedTvSerie = action.payload;

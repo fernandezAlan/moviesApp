@@ -113,7 +113,7 @@ export  const job = {
   Directing: ["Directora","Director"],
   Production:["Productora","Productor"]
 };
-export const filters = [
+export const filtersMovie = [
   {
     label: "populares",
     type: 'popular',
@@ -131,3 +131,18 @@ export const filters = [
     type: 'upcoming',
   },
 ];
+export const filtersTv = [
+  {
+    label: "populares",
+    type: 'popular',
+  },
+  {
+    label: "mejores",
+    type: 'top_rated',
+  },
+  {
+    label: "en emisión",
+    type: 'on_the_air',
+  },
+  
+]

@@ -3,7 +3,7 @@ import classes from "./collection.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addCollection } from "../../reducers/CollectionReducer";
 import { useNavigate, useParams } from "react-router-dom";
-import MoviesContainer from "../../components/MoviesContainer/MoviesContainer";
+import TitleContainer from "../../components/TitleContainer/TitleContainer";
 const Collection = () => {
   const dispatch = useDispatch();
   const params = useParams();
@@ -44,7 +44,7 @@ const Collection = () => {
               </div>
               <div className={classes.movies_collection} >
               {selectedCollection.parts.map((movie) => (
-                <MoviesContainer
+                <TitleContainer
                   key={movie.title}
                   imgURL={movie.poster_path}
                   name={movie.title}

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {getMovies,selectedMovie,getMovieCredits,searchMovie} from '../api/getMovies';
 import { getMovieGenres } from '../api/genres';
-//const initialState = { movies: "aun no hay movies aqui!" };
+
 
 export default function reducer (state = initialState, action) {
   switch (action.type) {
@@ -13,7 +13,12 @@ export default function reducer (state = initialState, action) {
 }
 
 const initialState = {
-  allMovies:[],
+  allMovies:{
+    popular:{},
+    top_rated:{},
+    now_playing:{},
+    upcoming:{}
+  },
   selectedMovie:null,
   movieCredits:null,
   moviesGenres:null
@@ -52,7 +57,9 @@ export const moviesSlice = createSlice({
   extraReducers:(builder)=>{
     builder.addCase(
       setMovies.fulfilled,
-      (state,action)=>{state.allMovies= action.payload}
+      (state,action)=>{
+        state.allMovies[action.meta.arg]= action.payload
+      }
     )
     .addCase(
       selectMovie.fulfilled,

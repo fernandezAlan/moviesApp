@@ -6,12 +6,12 @@ import {
   addMovieGenres,
 } from "../../reducers/moviesReducer";
 import { useSelector, useDispatch } from "react-redux";
-import MoviesContainer from "../../components/MoviesContainer/MoviesContainer";
+import TitleContainer from "../../components/TitleContainer/TitleContainer";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import classes from "./movies.module.css";
 import { ButtonFilter } from "../../styledComponents/buttons/buttons";
-import { filters } from "../../utils";
+import { filtersMovie } from "../../utils";
 import SelectionBars from "../../components/SelectionBars/SelectionBars";
 import { getMovieGenres } from "../../api/genres";
 const Movies = () => {
@@ -35,7 +35,7 @@ const Movies = () => {
         <div className={classes.selection_container}>
           <section>
             <div>
-              {filters.map((option) => (
+              {filtersMovie.map((option) => (
                 <ButtonFilter
                   selected={selectedFilter === option.type}
                   onClick={() => setSelectedFilters(option.type)}
@@ -46,7 +46,7 @@ const Movies = () => {
             </div>
             <div className={classes.sub_container}>
               {movies?.results?.map((movie) => (
-                <MoviesContainer
+                <TitleContainer
                   key={movie.title}
                   imgURL={movie.poster_path}
                   name={movie.title}

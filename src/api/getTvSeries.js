@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-export const getPopularTvSeries = async function () {
+export const getTvSeries = async function (type) {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await axios.get(
-          "https://api.themoviedb.org/3/tv/popular?api_key=cc623e62050ef7c617de4681fae90c0e&language=es"
+          `https://api.themoviedb.org/3/tv/${type}?api_key=cc623e62050ef7c617de4681fae90c0e&language=es`
         );
         resolve(response.data);
       } catch (error) {

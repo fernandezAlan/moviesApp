@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import MoviesContainer from "../../components/MoviesContainer/MoviesContainer";
+import TitleContainer from "../../components/TitleContainer/TitleContainer";
 import {
   AddPopularTvSeries,
   clearPopularTvSerie,
@@ -29,7 +29,7 @@ const TvShows = () => {
       <div className={classes.tv_serie_container}>
         {popularTvSeries
           ? popularTvSeries.results.map((serie) => (
-              <MoviesContainer
+              <TitleContainer
                 key={serie.name}
                 imgURL={serie.poster_path}
                 name={serie.name}

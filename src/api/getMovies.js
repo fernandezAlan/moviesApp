@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const getMovies = async function (type) {
+  
   return new Promise(async (resolve, reject) => {
     try {
       const response = await axios.get(
