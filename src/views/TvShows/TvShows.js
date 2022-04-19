@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import TitleContainer from "../../components/TitleContainer/TitleContainer";
 import {
-  AddPopularTvSeries,
+  AddTvSeries,
   clearPopularTvSerie,
 } from "../../reducers/TvShowsReducer";
 import classes from "./tvShows.module.css";
@@ -15,7 +15,7 @@ const TvShows = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!popularTvSeries) {
-      dispatch(AddPopularTvSeries());
+      dispatch(AddTvSeries());
     }
   }, []);
 

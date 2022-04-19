@@ -18,9 +18,9 @@ const initialState = {
   seasonDetails: null,
 };
 
-export const AddPopularTvSeries = createAsyncThunk(
+export const AddTvSeries = createAsyncThunk(
   "UPDATE_TV_SERIES",
-  async (type) => await getTvSeries(type)
+  async (data) => await getTvSeries(data)
 );
 export const addSelectedTvSerie = createAsyncThunk(
   "SELECT_TV_SERIE",
@@ -52,8 +52,9 @@ export const tvSeriesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(AddPopularTvSeries.fulfilled, (state, action) => {
-        state.TvSeries[action.meta.arg] = action.payload;
+      .addCase(AddTvSeries.fulfilled, (state, action) => {
+        const {type,page} = action.meta.arg
+        state.TvSeries[type][page] = action.payload;
       })
       .addCase(addSelectedTvSerie.fulfilled, (state, action) => {
         state.selectedTvSerie = action.payload;
