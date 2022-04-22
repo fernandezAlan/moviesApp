@@ -148,20 +148,26 @@ export const filtersTv = [
 ]
 
 export const formatDate = (dateSTR)=>{
-  const [year,month,day] = dateSTR.split('-')
-  const MESES = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-  ];
-  return `${day} de ${MESES[month - 1]}, ${year}`
+  if(dateSTR){
+    const [year,month,day] = dateSTR.split('-')
+    const MESES = [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre",
+    ];
+    return `${day} de ${MESES[month - 1]}, ${year}`
+
+  }
+  else {
+    return "fecha no disponible"
+  }
 }
