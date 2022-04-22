@@ -4,13 +4,14 @@ import Genre from "../Genre/Genre";
 import ActorCasting from "../ActorCasting/ActorCasting";
 import CollectionLink from "../CollectionLink/CollectionLink";
 import EpisodesLink from "../EpisodesLink/EpisodesLink";
-import { toggleElement } from "../../utils";
+import { toggleElement,formatDate } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import Images from "../Images/Images";
 import InformationContainer from "../InformationContainer/InformationContainer";
 import PreviousTitles from "../PreviousTitles/PreviousTitles";
 import Director from "../Director/Director";
 import Button from "../Button/Button";
+import { RateNumber,DateContainer } from "../../styledComponents/texts/texts";
 
 const SelectedTitle = ({ selectedTitle, credits, type }) => {
   const navigate = useNavigate();
@@ -56,11 +57,13 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                   <section>
                     <div>
                       <strong>fecha de estreno:</strong>
-                      <span>{selectedTitle.release_date}</span>
+                      <DateContainer>{formatDate(selectedTitle.release_date)}</DateContainer>
                     </div>
                     <div>
                       <strong>puntuación:</strong>
-                      <span>{selectedTitle.vote_average}</span>
+                      <RateNumber rate={+selectedTitle.vote_average}>
+                        {selectedTitle.vote_average}
+                      </RateNumber>
                     </div>
                   </section>
                   <section>
