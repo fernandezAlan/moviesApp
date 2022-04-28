@@ -17,6 +17,7 @@ const Navbar = () => {
           }}
           src="./icon_title.png"
         />
+      
     </Container>
   );
 };

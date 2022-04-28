@@ -9,6 +9,7 @@
     width: 100%;
     position: relative;
     background-color: black;
+    border: solid 3px #600094e0;
 }
 .tittle{
     text-align: center;
@@ -21,6 +22,12 @@
     display: none;
     justify-content: center;
     align-items: center;
+  
+}
+.text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
 }
 .img_movie{
     z-index: 1;

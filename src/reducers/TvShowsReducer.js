@@ -8,9 +8,21 @@ import {
 
 const initialState = {
   TvSeries: {
-    popular:{},
-    top_rated:{},
-    on_the_air:{},
+    popular: {
+      totalPages:null,
+      actualPage: 1,
+      results: [],
+    },
+    top_rated: {
+      totalPages:null,
+      actualPage: 1,
+      results: [],
+    },
+    on_the_air: {
+      totalPages:null,
+      actualPage: 1,
+      results: [],
+    },
   },
   selectedTvSerie: null,
   selectedTvSerieCredits: null,
@@ -46,15 +58,22 @@ export const tvSeriesSlice = createSlice({
     clearPopularTvSerie: (state, action) => {
       state.popularTvSeries = null;
     },
-    clearSeasonDetails:(state,action)=>{
-      state.seasonDetails=null
-    }
+    clearSeasonDetails: (state, action) => {
+      state.seasonDetails = null;
+    },
+    setNextPageTV: (state, action) => {
+      state.TvSeries[action.payload.type].actualPage++;
+    },
+    setPrevPageTV: (state, action) => {
+      state.TvSeries[action.payload.type].actualPage--;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(AddTvSeries.fulfilled, (state, action) => {
-        const {type,page} = action.meta.arg
-        state.TvSeries[type][page] = action.payload;
+        const {type} = action.meta.arg;
+        state.TvSeries[type].results.push(action.payload);
+        state.TvSeries[type].totalPages=action.payload.total_pages
       })
       .addCase(addSelectedTvSerie.fulfilled, (state, action) => {
         state.selectedTvSerie = action.payload;
@@ -67,9 +86,14 @@ export const tvSeriesSlice = createSlice({
       })
       .addCase(addSeasonDetails.fulfilled, (state, action) => {
         state.seasonDetails = action.payload;
-      })
+      });
   },
 });
 
-export const { clearSelectedTvSerie, clearPopularTvSerie,clearSeasonDetails} =
-  tvSeriesSlice.actions;
+export const {
+  clearSelectedTvSerie,
+  clearPopularTvSerie,
+  clearSeasonDetails,
+  setNextPageTV,
+  setPrevPageTV,
+} = tvSeriesSlice.actions;

@@ -3,7 +3,8 @@ import classes from './searchInput.module.css'
 import { useDispatch,useSelector } from "react-redux";
 import { addFindMovie } from "../../reducers/moviesReducer";
 import { useNavigate } from "react-router-dom";
-const Search = ()=>{
+import { SearchButton } from "../../styledComponents/buttons/buttons";
+const SearchInput = ()=>{
     const [value,setValue] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -20,10 +21,10 @@ const Search = ()=>{
         value={value}
         onChange={handleChange}
         />
-        <button
+        <SearchButton
         onClick={startToSearch}
-        >buscar pelicula</button>
+        >buscar</SearchButton>
     </div>
     )
 }
-export default Search
+export default SearchInput

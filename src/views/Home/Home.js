@@ -4,21 +4,30 @@ import {
   MediaTypeSelector,
   ButtonFilter,
   NextPrevButton,
+  SearchButton,
 } from "../../styledComponents/buttons/buttons";
 import { filtersMovie, filtersTv } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import TitleContainer from "../../components/TitleContainer/TitleContainer";
-import { setMovies } from "../../reducers/moviesReducer";
+import {
+  setMovies,
+  setNextPageMovie,
+  setPrevPageMovie,
+} from "../../reducers/moviesReducer";
 import {
   AllTitlesContainer,
   Container,
+  ButtonNextPrevContainer,
 } from "../../styledComponents/containers/containers";
-import { AddTvSeries } from "../../reducers/TvShowsReducer";
-
+import {
+  AddTvSeries,
+  setNextPageTV,
+  setPrevPageTV,
+} from "../../reducers/TvShowsReducer";
+import SearchInput from "../../components/SearchInput/SearchInput";
+import AllTitles from "../../components/AllTitles/AllTitles";
 const Home = () => {
   /*------------------USE STATE-----------------*/
-  const [pageMovies, setPageMovies] = useState(1);
-  const [pageTv, setPageTv] = useState(1);
   const [selectedFilter, setSelectedFilters] = useState({
     label: "populares",
     type: "popular",
@@ -31,94 +40,104 @@ const Home = () => {
   /*-----------------USE DISPATCH----------------*/
   const dispatch = useDispatch();
 
-  /*-----------------USE NAVIGATE----------------*/
-  const navigate = useNavigate();
-
   /*-----------------USE SELECTOR----------------*/
   const moviesState = useSelector((state) => state.movies.allMovies);
   const tvState = useSelector((state) => state.tvSeries.TvSeries);
 
   /*------------------GENERAL CONFIGURATION-----------------*/
-  const page = mediaTypeConfig.movie ? pageMovies : pageTv;
-  const setPage = mediaTypeConfig.movie ? setPageMovies : setPageTv;
+
   const URLmediaType = mediaTypeConfig.movie ? "/movie/" : "/tv/";
   const typeFilter = selectedFilter.type;
-  const titles = mediaTypeConfig.movie
-    ? moviesState[typeFilter][page]
-    : tvState[typeFilter][page];
   const filter = mediaTypeConfig.movie ? filtersMovie : filtersTv;
 
   /*------------------USE EFFECT-----------------*/
+
   useEffect(() => {
-    if (mediaTypeConfig.movie && !moviesState[typeFilter][page]?.results) {
-      dispatch(setMovies({ type: typeFilter, page }));
-    } else if (!tvState[typeFilter]?.results) {
-      dispatch(AddTvSeries({ type: typeFilter, page }));
+    if (mediaTypeConfig.movie && !moviesState[typeFilter]?.results.length) {
+      dispatch(setMovies({ type: typeFilter }));
+    } else if (!tvState[typeFilter]?.results.length) {
+      dispatch(AddTvSeries({ type: typeFilter }));
     }
-  }, [selectedFilter, mediaTypeConfig, page]);
+  }, [selectedFilter, mediaTypeConfig, moviesState]);
 
   return (
     <div>
-      <section>
-        <MediaTypeSelector
-          selected={mediaTypeConfig.movie}
-          onClick={() => {
-            setMediaTypeConfig({
-              movie: true,
-              tv: false,
-            });
-            setSelectedFilters(filtersMovie[0]);
-          }}
-        >
-          Películas
-        </MediaTypeSelector>
-        <span>{"&"}</span>
-        <MediaTypeSelector
-          selected={mediaTypeConfig.tv}
-          onClick={() => {
-            setMediaTypeConfig({
-              movie: false,
-              tv: true,
-            });
-            setSelectedFilters(filtersTv[0]);
-          }}
-        >
-          Series
-        </MediaTypeSelector>
-      </section>
-      <section>
-        {filter.map((option) => (
-          <ButtonFilter
-            selected={typeFilter === option.type}
-            onClick={() => setSelectedFilters(option)}
-          >
-            {option.label.toUpperCase()}
-          </ButtonFilter>
-        ))}
-      </section>
       <Container>
-        <AllTitlesContainer>
-          {titles?.results?.map((movie) => (
-            <TitleContainer
-              key={movie.title ? movie.title : movie.name}
-              imgURL={movie.poster_path}
-              name={movie.title ? movie.title : movie.name}
-              selectMovieHandle={() => navigate(URLmediaType + movie.id)}
-            />
-          ))}
-        </AllTitlesContainer>
+        <Container
+          width={"25vw"}
+          flexDirection={"column"}
+          justifyContent={"start"}
+          height={"55vh"}
+        >
+          <section>
+            <SearchInput />
+          </section>
+        </Container>
+        <Container flexDirection={"column"}>
+          <section>
+            <MediaTypeSelector
+              selected={mediaTypeConfig.movie}
+              onClick={() => {
+                setMediaTypeConfig({
+                  movie: true,
+                  tv: false,
+                });
+                setSelectedFilters(filtersMovie[0]);
+              }}
+            >
+              Películas
+            </MediaTypeSelector>
+            <span>{"&"}</span>
+            <MediaTypeSelector
+              selected={mediaTypeConfig.tv}
+              onClick={() => {
+                setMediaTypeConfig({
+                  movie: false,
+                  tv: true,
+                });
+                setSelectedFilters(filtersTv[0]);
+              }}
+            >
+              Series
+            </MediaTypeSelector>
+          </section>
+          <section>
+            {filter.map((option) => (
+              <ButtonFilter
+                selected={typeFilter === option.type}
+                onClick={() => setSelectedFilters(option)}
+              >
+                {option.label.toUpperCase()}
+              </ButtonFilter>
+            ))}
+          </section>
+          <AllTitles
+            titlesInfo={
+              mediaTypeConfig.movie
+                ? moviesState[typeFilter]
+                : tvState[typeFilter]
+            }
+            URLmediaType={URLmediaType}
+            typeFilter={typeFilter}
+            mediaType={mediaTypeConfig.movie ? "movie" : "tv"}
+            setNextPage={() =>
+              mediaTypeConfig.movie
+                ? setNextPageMovie({ type: typeFilter })
+                : setNextPageTV({ type: typeFilter })
+            }
+            setPrevPage={() =>
+              mediaTypeConfig.movie
+                ? setPrevPageMovie({ type: typeFilter })
+                : setPrevPageTV({ type: typeFilter })
+            }
+            getMediaType={() => {
+              return mediaTypeConfig.movie
+                ? (page) => setMovies({ type: typeFilter, page: page })
+                : (page) => AddTvSeries({ type: typeFilter, page: page });
+            }}
+          />
+        </Container>
       </Container>
-      <NextPrevButton
-        onClick={() => {
-          if (page > 1) {
-            setPage(page - 1);
-          }
-        }}
-      >
-        -
-      </NextPrevButton>
-      <span>{`página ${page}`}</span>
-      <NextPrevButton onClick={() => setPage(page + 1)}>+</NextPrevButton>
     </div>
   );
 };

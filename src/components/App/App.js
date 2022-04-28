@@ -11,6 +11,7 @@ import Collection from "../../views/Collection/Collection";
 import SeasonDetails from "../../views/SeasonDetails/SeasonDetails";
 import classes from './app.module.css'
 import Seasons from "../../views/Seasons/Seasons";
+import TitlesFound from "../../views/TitlesFound/TitlesFound";
 const App = () => {
   return (
     <div className={classes.container}>
@@ -24,7 +25,7 @@ const App = () => {
         <Route path="/person/:id" element={<Person />} />
         <Route path="/person/:id/jobs" element={<Person />} />
         <Route path="/collection/:id" element={<Collection />} />
-        <Route path="/search/:movieName" element={<Movies />} />
+        <Route path="/search/:name" element={<TitlesFound />} />
         <Route path="/tv/:id/seasons" element={<Seasons />} />
         <Route path="/tv/:id/season/:seasonNumber/details" element={<SeasonDetails />} />
       </Routes>

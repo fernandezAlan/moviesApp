@@ -1,14 +1,19 @@
 import styled from "styled-components";
 
-
+export const ButtonNextPrevContainer= styled.div`
+margin:20px
+`
 export const Container= styled.div`
 display:flex;
-justify-content:center;
-align-items: center;
+justify-content:${props=>props.justifyContent ? props.justifyContent : 'center'};
+align-items: ${props=>props.alignItems ? props.alignItems : 'center'};
+flex-direction: ${props=>props.flexDirection ? props.flexDirection : 'row'};
+width: ${props=>props.width ? props.width : 'auto'};
+height:${props=>props.height ? props.height : 'auto'};
 `
 export const AllTitlesContainer = styled.div`
 display:flex;
-width:70vw;
+width:60vw;
 flex-wrap:wrap;
 height: 50vh;
 overflow-y: scroll;

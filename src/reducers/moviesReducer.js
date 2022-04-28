@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import {getMovies,selectedMovie,getMovieCredits,searchMovie} from '../api/getMovies';
+import {getMovies,selectedMovie,getMovieCredits} from '../api/getMovies';
+import { searchTitle } from '../api/search';
 import { getMovieGenres } from '../api/genres';
 
 
@@ -14,10 +15,26 @@ export default function reducer (state = initialState, action) {
 
 const initialState = {
   allMovies:{
-    popular:{},
-    top_rated:{},
-    now_playing:{},
-    upcoming:{}
+    popular:{
+      totalPages:null,
+      actualPage:1,
+      results:[]
+    },
+    top_rated:{
+      totalPages:null,
+      actualPage:1,
+      results:[]
+    },
+    now_playing:{
+      totalPages:null,
+      actualPage:1,
+      results:[]
+    },
+    upcoming:{
+      totalPages:null,
+      actualPage:1,
+      results:[]
+    }
   },
   selectedMovie:null,
   movieCredits:null,
@@ -43,7 +60,7 @@ export const getCredits = createAsyncThunk(
 
 export const addFindMovie = createAsyncThunk(
   'ADD_FIND_MOVIES',
-  async (movieName)=> await searchMovie(movieName) 
+  async (name)=> await searchTitle(name) 
 )
 
 export const moviesSlice = createSlice({
@@ -52,15 +69,21 @@ export const moviesSlice = createSlice({
   reducers:{
     clearSelectedMovie:(state,action)=>{
       state.selectedMovie=null
-    }  
+    },
+    setNextPageMovie:(state,action)=>{
+      state.allMovies[action.payload.type].actualPage++
+    },
+    setPrevPageMovie:(state,action)=>{
+      state.allMovies[action.payload.type].actualPage--
+    }
   },
   extraReducers:(builder)=>{
     builder.addCase(
       setMovies.fulfilled,
       (state,action)=>{
-        console.log('arg:',action.meta.arg)
-        const {type,page} = action.meta.arg
-        state.allMovies[type][page]= action.payload
+        const {type} = action.meta.arg
+        state.allMovies[type].results.push(action.payload)
+        state.allMovies[type].totalPages=action.payload.total_pages
       }
     )
     .addCase(
@@ -88,4 +111,4 @@ export const moviesSlice = createSlice({
   }
 })
 
-export const {clearSelectedMovie} = moviesSlice.actions
+export const {clearSelectedMovie,setNextPageMovie,setPrevPageMovie} = moviesSlice.actions

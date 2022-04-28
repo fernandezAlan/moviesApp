@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getMovies = async function ({type,page}) {
-  console.log('getMoviees',page)
+  console.log('getMovies',{type,page})
   return new Promise(async (resolve, reject) => {
     try {
       const response = await axios.get(
@@ -47,15 +47,4 @@ export const getMovieCredits = (movieId) => {
     }
   });
 };
-export const searchMovie = async (movieName) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=cc623e62050ef7c617de4681fae90c0e&language=es&query=${movieName}&page=1`
-      );
-      resolve(response.data);
-    } catch (error) {
-      reject("error at searchMovie:", error);
-    }
-  });
-};
+
