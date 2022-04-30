@@ -168,9 +168,12 @@ const Home = () => {
                   : setPrevPageTV({ type: typeFilter })
               }
               getMediaType={() => {
-                return selectedMediaType === "movie"
-                  ? (page) => setMovies({ type: typeFilter, page: page })
-                  : (page) => AddTvSeries({ type: typeFilter, page: page });
+                return (page)=>addTitles({
+                  mediaType: selectedMediaType,
+                  genreId: genreSelected?.id,
+                  page: page,
+                  type: typeFilter,
+                })
               }}
             />
           ) : (

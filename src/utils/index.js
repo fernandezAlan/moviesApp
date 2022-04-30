@@ -84,7 +84,7 @@ export  const getPersonStatistics = ({ cast, crew }) => {
 
 export   const getRecurrentGenre = ({movies,allGenres})=>{
   const genresCounts = {};
-  console.log('getRecurrentGenre',movies)
+  console.log('getRecurrentGenre',allGenres)
   movies.forEach((mov) => {
     if (mov.media_type === "movie") {
       mov.genre_ids.forEach((id) => {
@@ -102,7 +102,7 @@ export   const getRecurrentGenre = ({movies,allGenres})=>{
   const recurrentGenreIndex = genreValues.indexOf(recurrentGenreValue);
 
   const recurrentGenreId = genreKeys[recurrentGenreIndex];
-  return allGenres.genres.filter(
+  return allGenres.filter(
     (genre) => genre.id === +recurrentGenreId
   )[0];
 

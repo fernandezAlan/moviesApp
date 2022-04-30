@@ -7,19 +7,23 @@ import {
   addPersonCredits,
   clearSelectedPerson,
 } from "../../reducers/PersonReducer";
-import { useNavigate } from "react-router-dom";
 import Image from "../../components/Images/Images";
 import InformationContainer from "../../components/InformationContainer/InformationContainer";
-import MorePopular from "../../components/MorePopular/MorePopular";
-import PlusButton from "../../components/PlusButton/PlusButton";
 import PersonStatistics from "../../components/PersonStatistics/PersonStatistics";
 import { addMovieGenres } from "../../reducers/moviesReducer";
+
 const Person = () => {
+  /*------USE PARAMS-------*/
   const params = useParams();
+
+  /*------USE DISPATCH-----*/
   const dispatch = useDispatch();
+
+  /*------USE SELECTOR-----*/
   const selectedPerson = useSelector((state) => state.person.selectedPerson);
   const personCredits = useSelector((state) => state.person.personCredits);
-  const navigate = useNavigate();
+
+  /*------USE EFFECT--------*/
   useEffect(() => {
     dispatch(addPerson(params.id));
     dispatch(addPersonCredits(params.id));
@@ -29,9 +33,6 @@ const Person = () => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log("person view", { personCredits, selectedPerson });
-  }, [selectedPerson, personCredits]);
 
   return (
     <div>

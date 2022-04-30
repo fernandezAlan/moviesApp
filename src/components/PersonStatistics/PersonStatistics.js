@@ -5,7 +5,7 @@ import { getPersonStatistics, getRecurrentGenre, job } from "../../utils";
 const PersonStatistics = () => {
   const selectedPerson = useSelector((state) => state.person.selectedPerson);
   const personCredits = useSelector((state) => state.person.personCredits);
-  const allGenres = useSelector((state) => state.movies.moviesGenres);
+  const allGenres = useSelector((state) => state.movies.genres);
   const departament = selectedPerson.known_for_department;
   const genre = selectedPerson.gender;
   const { allMovies, allSeries, director, ExecutiveProducer } =
