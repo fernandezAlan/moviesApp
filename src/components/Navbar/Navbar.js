@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import classes from "./navbar.module.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate
+} from "react-router-dom";
 import SearchInput from "../SearchInput/SearchInput";
 import { PrincipalTitle } from "../../styledComponents/texts/texts";
-import { Container } from "../../styledComponents/containers/containers";
+import {
+  Container,
+  SubContainer,
+} from "../../styledComponents/containers/containers";
 const Navbar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
-    <Container onClick={()=>navigate('/')}>
-        <PrincipalTitle>MOVIE APP</PrincipalTitle>
-        <img
-          style={{
-            width: "50px",
-            height: "50px",
-            margin: "10px",
-          }}
-          src="./icon_title.png"
-        />
-      
+    <Container justifyContent={"start"}>
+      <SubContainer width={"50vw"} justifyContent={"space-evenly"}>
+        <PrincipalTitle onClick={() => navigate("/")}>MOVIE APP</PrincipalTitle>
+        <SearchInput/>
+      </SubContainer>
     </Container>
   );
 };

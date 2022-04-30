@@ -4,6 +4,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { addFindMovie } from "../../reducers/moviesReducer";
 import { useNavigate } from "react-router-dom";
 import { SearchButton } from "../../styledComponents/buttons/buttons";
+import { SearchInputStyle } from "../../styledComponents/inputs/inputs";
 const SearchInput = ()=>{
     const [value,setValue] = useState('')
     const dispatch = useDispatch()
@@ -11,18 +12,17 @@ const SearchInput = ()=>{
     const handleChange = (event)=>{
         setValue(event.target.value)
     }
-    const startToSearch = ()=>{
-        navigate('/search/'+value.replace(' ','%20'))
-    }
+  
     return(
     <div>
-        <input 
+        <SearchInputStyle 
         type='text'
         value={value}
         onChange={handleChange}
+        placeholder={'busca una película o serie'}
         />
         <SearchButton
-        onClick={startToSearch}
+        onClick={()=> navigate('/search/'+value.replace(' ','%20'))}
         >buscar</SearchButton>
     </div>
     )

@@ -26,6 +26,10 @@ import {
 } from "../../reducers/TvShowsReducer";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import AllTitles from "../../components/AllTitles/AllTitles";
+import { addMovieGenres } from "../../reducers/moviesReducer";
+import { GenreLabel } from "../../styledComponents/labels/labels";
+import { SubTitle } from "../../styledComponents/texts/texts";
+
 const Home = () => {
   /*------------------USE STATE-----------------*/
   const [selectedFilter, setSelectedFilters] = useState({
@@ -36,14 +40,14 @@ const Home = () => {
     movie: true,
     tv: false,
   });
-
+  const [genreSelected, setGenreSelected] = useState();
   /*-----------------USE DISPATCH----------------*/
   const dispatch = useDispatch();
 
   /*-----------------USE SELECTOR----------------*/
   const moviesState = useSelector((state) => state.movies.allMovies);
   const tvState = useSelector((state) => state.tvSeries.TvSeries);
-
+  const moviesGenres = useSelector((state) => state.movies.moviesGenres);
   /*------------------GENERAL CONFIGURATION-----------------*/
 
   const URLmediaType = mediaTypeConfig.movie ? "/movie/" : "/tv/";
@@ -55,6 +59,9 @@ const Home = () => {
   useEffect(() => {
     if (mediaTypeConfig.movie && !moviesState[typeFilter]?.results.length) {
       dispatch(setMovies({ type: typeFilter }));
+      if (!moviesGenres.length) {
+        dispatch(addMovieGenres());
+      }
     } else if (!tvState[typeFilter]?.results.length) {
       dispatch(AddTvSeries({ type: typeFilter }));
     }
@@ -63,17 +70,24 @@ const Home = () => {
   return (
     <div>
       <Container>
-        <Container
-          width={"25vw"}
-          flexDirection={"column"}
-          justifyContent={"start"}
-          height={"55vh"}
-        >
-          <section>
-            <SearchInput />
-          </section>
+        <Container width={"25vw"} height={'85vh'}>
+          <Container justifyContent={'start'}>
+            <SubTitle>Géneros disponibles</SubTitle>
+            <Container>
+            {moviesGenres.map((genre) => {
+              return (
+                <GenreLabel 
+                selected={genreSelected === genre.id}
+                onClick={()=>setGenreSelected(genre.id)}
+                >
+                  {genre.name}
+                </GenreLabel>
+              );
+            })}
+            </Container>
+          </Container>
         </Container>
-        <Container flexDirection={"column"}>
+        <Container flexDirection={"column"} width={"70vw"} height={'85vh'}>
           <section>
             <MediaTypeSelector
               selected={mediaTypeConfig.movie}

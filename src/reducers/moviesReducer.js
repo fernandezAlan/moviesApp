@@ -38,7 +38,8 @@ const initialState = {
   },
   selectedMovie:null,
   movieCredits:null,
-  moviesGenres:null
+  moviesGenres:[],
+  genres:[]
 }
 
 export const setMovies = createAsyncThunk(

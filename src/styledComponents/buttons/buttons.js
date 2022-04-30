@@ -54,10 +54,11 @@ export const MediaTypeSelector = styled.button`
 export const SearchButton = styled.button`
   color: white;
   background-color: #610094;
+  height:40px;
   border: 0px;
-  border-radius: 10px;
+  padding:5px;
+  border-radius: 0px 10px 10px 0px;
   width: auto;
-  padding: 5px 10px;
   cursor: pointer;
   outline: none;
   &:focus {
