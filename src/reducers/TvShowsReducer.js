@@ -5,21 +5,21 @@ import {
   getTvSerieCredits,
   getSeasonDetails,
 } from "../api/getTvSeries";
-
+import { getGenres, getTitleGenre } from "../api/genres";
 const initialState = {
   TvSeries: {
     popular: {
-      totalPages:null,
+      totalPages: null,
       actualPage: 1,
       results: [],
     },
     top_rated: {
-      totalPages:null,
+      totalPages: null,
       actualPage: 1,
       results: [],
     },
     on_the_air: {
-      totalPages:null,
+      totalPages: null,
       actualPage: 1,
       results: [],
     },
@@ -28,6 +28,7 @@ const initialState = {
   selectedTvSerieCredits: null,
   tvSerieCredits: null,
   seasonDetails: null,
+  genres: [],
 };
 
 export const AddTvSeries = createAsyncThunk(
@@ -47,7 +48,15 @@ export const addSeasonDetails = createAsyncThunk(
   "ADD_SEASON_DETAILS",
   async (data) => await getSeasonDetails(data)
 );
+export const addTVgenres = createAsyncThunk(
+  "ADD_TV_GENRES",
+  async () => await getGenres({ mediaType: "tv" })
+);
 
+export const addTVSameGenre = createAsyncThunk(
+  "ADD_TV_SHOWS_SAME_GENRE",
+  async (data) => await getTitleGenre(data)
+);
 export const tvSeriesSlice = createSlice({
   name: "TVseries",
   initialState,
@@ -71,9 +80,9 @@ export const tvSeriesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(AddTvSeries.fulfilled, (state, action) => {
-        const {type} = action.meta.arg;
+        const { type } = action.meta.arg;
         state.TvSeries[type].results.push(action.payload);
-        state.TvSeries[type].totalPages=action.payload.total_pages
+        state.TvSeries[type].totalPages = action.payload.total_pages;
       })
       .addCase(addSelectedTvSerie.fulfilled, (state, action) => {
         state.selectedTvSerie = action.payload;
@@ -86,6 +95,22 @@ export const tvSeriesSlice = createSlice({
       })
       .addCase(addSeasonDetails.fulfilled, (state, action) => {
         state.seasonDetails = action.payload;
+      })
+      .addCase(addTVgenres.fulfilled, (state, action) => {
+        state.genres = action.payload;
+      })
+      .addCase(addTVSameGenre.fulfilled, (state, action) => {
+        const { genreId } = action.meta.arg;
+        if (state.TvSeries["genre_id_" + genreId]) {
+          state.TvSeries["genre_id_" + genreId].results.push(action.payload);
+        } else {
+          const data = {
+            totalPages: action.payload.total_pages,
+            actualPage: 1,
+            results: [action.payload],
+          };
+          state.TvSeries["genre_id_" + genreId] = data;
+        }
       });
   },
 });

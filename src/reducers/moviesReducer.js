@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {getMovies,selectedMovie,getMovieCredits} from '../api/getMovies';
 import { searchTitle } from '../api/search';
-import { getMovieGenres } from '../api/genres';
+import { getGenres,getTitleGenre } from '../api/genres';
 
 
 export default function reducer (state = initialState, action) {
@@ -34,11 +34,10 @@ const initialState = {
       totalPages:null,
       actualPage:1,
       results:[]
-    }
+    },
   },
   selectedMovie:null,
   movieCredits:null,
-  moviesGenres:[],
   genres:[]
 }
 
@@ -48,7 +47,7 @@ export const setMovies = createAsyncThunk(
 )
 export const addMovieGenres= createAsyncThunk(
   'ADD_MOVIE_GENRES',
-  async()=>await getMovieGenres()
+  async()=>await getGenres({mediaType:'movie'})
 )
 export const selectMovie= createAsyncThunk(
   'SELECT_MOVIE',
@@ -64,6 +63,10 @@ export const addFindMovie = createAsyncThunk(
   async (name)=> await searchTitle(name) 
 )
 
+export const addMoviesSameGenre = createAsyncThunk(
+  'ADD_MOVIES_SAME_GENRE',
+  async (data)=> await getTitleGenre(data) 
+)
 export const moviesSlice = createSlice({
   name:'movies',
   initialState,
@@ -107,7 +110,25 @@ export const moviesSlice = createSlice({
     )
     .addCase(
       addMovieGenres.fulfilled,
-      (state,action)=>{state.moviesGenres= action.payload}
+      (state,action)=>{state.genres= action.payload}
+    )
+    .addCase(
+      addMoviesSameGenre.fulfilled,
+      (state,action)=>{
+        const {genreId} = action.meta.arg
+        if(state.allMovies['genre_id_'+genreId]){
+          state.allMovies['genre_id_'+genreId].results.push(action.payload)
+        }
+        else{
+          const data = {
+            totalPages:action.payload.total_pages,
+            actualPage:1,
+            results:[action.payload]
+          }
+          state.allMovies['genre_id_'+genreId]= data
+
+        }
+      }
     )
   }
 })

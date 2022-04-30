@@ -11,4 +11,8 @@ export const SearchInputStyle = styled.input`
   ::placeholder {
     color: white;
   }
+  outline: none;
+  &:focus {
+    outline: none;
+  }
 `;

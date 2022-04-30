@@ -58,7 +58,7 @@ export const SearchButton = styled.button`
   border: 0px;
   padding:5px;
   border-radius: 0px 10px 10px 0px;
-  width: auto;
+  width: 80px;
   cursor: pointer;
   outline: none;
   &:focus {
