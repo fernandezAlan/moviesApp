@@ -18,6 +18,10 @@ export const NextPrevButton = styled.button`
   &:focus {
     outline: none;
   }
+  @media (max-width: 800px){
+    width: 40px;
+    height: 40px;
+  }
 `;
 export const ButtonFilter = styled.button`
   margin: 10px;
@@ -28,6 +32,10 @@ export const ButtonFilter = styled.button`
   outline: none;
   &:focus {
     outline: none;
+  }
+  @media (max-width: 800px){
+    display:${(props) => (!props.selected ? "none" : "")};
+    font-size: 25px;
   }
 `;
 export const MediaTypeSelector = styled.button`
@@ -48,6 +56,9 @@ export const MediaTypeSelector = styled.button`
   outline: none;
   &:focus {
     outline: none;
+  }
+  @media (max-width: 800px){
+    font-size: 35px;
   }
 `;
 

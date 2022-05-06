@@ -42,7 +42,7 @@ const TitlesFound = () => {
         <h1>{`resultado de la búsqueda de ${params.name}`}</h1>
         <h3>{`total de resultados: ${titlesFound.totalResults}`}</h3>
       </section>
-      <Container flexDirection={"column"}>
+      <Container desktop={{flexDirection:"column"}}>
         <AllTitles
           titlesInfo={titlesFound}
           mediaType={"movies&tv"}

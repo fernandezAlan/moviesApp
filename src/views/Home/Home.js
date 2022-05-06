@@ -108,8 +108,8 @@ const Home = () => {
   return (
     <div>
       <Container>
-        <Container width={"25vw"} height={"85vh"}>
-          <Container justifyContent={"start"}>
+        <Container desktop ={{width:"25vw", height:"85vh"}} mobile={{display:'none'}}>
+          <Container desktop = {{justifyContent:"start"}}>
             <SubTitle>Géneros disponibles</SubTitle>
             <Container>
               {genres.map((genre) => {
@@ -125,7 +125,10 @@ const Home = () => {
             </Container>
           </Container>
         </Container>
-        <Container flexDirection={"column"} width={"70vw"} height={"85vh"}>
+        <Container 
+        desktop={{flexDirection:"column", width:"70vw", height:"85vh"}}
+        mobile={{flexDirection:"column", width:"100vw", height:'95vh'}}
+        >
           <section>
             <MediaTypeSelector
               selected={selectedMediaType === "movie"}

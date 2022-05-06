@@ -23,3 +23,10 @@ export const SubTitle = styled.h4`
   text-align: center;
   width: 100%;
 `;
+
+export const ActualPage = styled.span`
+font-size: 20px;
+@media (max-width: 800px){
+  font-size: 25px;
+}
+`

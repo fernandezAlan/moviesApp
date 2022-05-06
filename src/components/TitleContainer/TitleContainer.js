@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./moviesContainer.module.css";
 import { toggleElement } from "../../utils/index";
 import { MediaTypeLabel } from "../../styledComponents/labels/labels.js";
+import { CardContainer } from "../../styledComponents/containers/containers";
 const TitleContainer = ({
   imgURL,
   name,
@@ -21,9 +22,8 @@ const TitleContainer = ({
       tv:'serie de tv'
   }
   return (
-    <section
-      className={classes.container}
-      style={{ width: AllSizes[size] }}
+    <CardContainer
+      width={size ? AllSizes[size] : '100px'}
       onClick={selectMovieHandle}
       onMouseEnter={() =>
         toggleElement("title_" + name + id, "flex", "enter")
@@ -48,7 +48,7 @@ const TitleContainer = ({
           alt="movie_poster"
         />
       </div>
-    </section>
+    </CardContainer>
   );
 };
 export default TitleContainer;

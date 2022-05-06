@@ -7,7 +7,7 @@ import {
 import TitleContainer from "../TitleContainer/TitleContainer";
 import { NextPrevButton } from "../../styledComponents/buttons/buttons";
 import { useDispatch } from "react-redux";
-
+import { ActualPage } from "../../styledComponents/texts/texts";
 const AllTitles = ({
   titlesInfo,
   URLmediaType,
@@ -73,7 +73,7 @@ const AllTitles = ({
   /*---------------------------------------------------------*/
 
   return (
-    <>
+    <div>
       <AllTitlesContainer>
         {titles?.map((movie) => (
           <TitleContainer
@@ -95,7 +95,7 @@ const AllTitles = ({
       </AllTitlesContainer>
       <ButtonNextPrevContainer>
         <NextPrevButton onClick={prevPage}>-</NextPrevButton>
-        <span>{`página ${page}`}</span>
+        <ActualPage>{`página ${page}`}</ActualPage>
         <NextPrevButton
           onClick={nextPage}
           disabled={page === titlesInfo.totalPages}
@@ -103,7 +103,7 @@ const AllTitles = ({
           +
         </NextPrevButton>
       </ButtonNextPrevContainer>
-    </>
+    </div>
   );
 };
 

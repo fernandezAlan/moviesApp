@@ -16,10 +16,12 @@ import {
 const Navbar = () => {
   const navigate = useNavigate();
   return (
-    <Container justifyContent={"start"}>
-      <SubContainer width={"50vw"} justifyContent={"space-evenly"}>
+    <Container  desktop={{justifyContent:"start"}}>
+      <SubContainer desktop = {{width:"50vw",justifyContent:"space-evenly"}}>
         <PrincipalTitle onClick={() => navigate("/")}>MOVIE APP</PrincipalTitle>
+        <Container mobile={{display:'none'}}>
         <SearchInput/>
+        </Container>
       </SubContainer>
     </Container>
   );
