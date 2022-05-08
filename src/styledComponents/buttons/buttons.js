@@ -12,7 +12,10 @@ export const NextPrevButton = styled.button`
     props.disabled
       ? ""
       : `&:active{
-  background-color:#380155
+  background-color:#380155;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   }`}
   outline: none;
   &:focus {

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import classes from "./seasonDetails.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addSeasonDetails,
@@ -11,6 +10,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Episodes from "../../components/Episodes/Episodes";
 import EpisodesContainer from "../../components/EpisodesContainer/EpisodesContainer";
 import Image from "../../components/Images/Images";
+import {Container,SeasonContainer} from "../../styledComponents/containers/containers"
+import { NextPrevButton } from "../../styledComponents/buttons/buttons";
 const SeasonDetails = () => {
   const dispatch = useDispatch();
   const params = useParams();
@@ -54,59 +55,42 @@ const SeasonDetails = () => {
         break;
     }
   };
-  useEffect(() => {
-    console.log("params", { seasonDetails, SelectedTvSerie, params });
-  }, [seasonDetails, SelectedTvSerie, params]);
+ 
   return (
-    <div className={classes.container}>
+    <Container>
       {seasonDetails && SelectedTvSerie ? (
-        <div className={classes.sub_container}>
-          <section className={classes.content_container}>
-            <section>
+        <Container desktop={{width:'100vw',flexDirection:'column'}}>
+          <SeasonContainer>
+           
               <h2>{SelectedTvSerie.name}</h2>
-              <div className={classes.temp_container}>
-                <div
-                  className={classes.next_prev_button}
+              <Container>
+                <NextPrevButton
                   onClick={() => handleNextPrev("prev")}
                 >
-                  {"◀"}
-                </div>
-                <span className={classes.current_season}>
+                  {"-"}
+                </NextPrevButton>
+                <Container>
                   {seasonDetails.name}
-                </span>
-                <div
-                  className={classes.next_prev_button}
+                </Container>
+                <NextPrevButton
                   onClick={() => handleNextPrev("next")}
                 >
-                  {"▶"}
-                </div>
-              </div>
-            </section>
-            <section className={classes.sub_content}>
-              <section className={classes.img_container}>
-                <div className={classes.img_sub_container}>
+                  {"+"}
+                </NextPrevButton>
+              </Container>
+          
+            <Container desktop={{justifyContent:'space-evenly'}} mobile={{flexDirection:'column'}}>
+              <Container desktop={{width:'20vw'}} mobile={{width:'60vw'}}>
                   <Image singleURL={seasonDetails.poster_path} />
-                </div>
-              </section>
+              </Container>
               <EpisodesContainer episodes={seasonDetails.episodes} />
-            </section>
-          </section>
-          {/*
-          <h3>{seasonDetails.name}</h3>
-          <div className={classes.data_container}>
-            <section className={classes.img_container}>
-              
-            </section>
-            <section className={classes.episodes_container}>
-              <Episodes episodes={seasonDetails.episodes} />
-            </section>
-          </div>
-        */}
-        </div>
+            </Container>
+          </SeasonContainer>
+        </Container>
       ) : (
         "loading"
       )}
-    </div>
+    </Container>
   );
 };
 

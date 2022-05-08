@@ -1,42 +1,68 @@
-import React, { useEffect, useState } from "react";
-import classes from "./episodesContainer.module.css";
-import Image from "../Images/Images";
+import React, {useState } from "react";
+import {
+  Container,
+  EpisodesContainerStyle,
+  Episode,
+  InformationEpisode,
+  ContentEpisodeContainer,
+  EpisodeOverview
+} from "../../styledComponents/containers/containers";
+import { MoreButton } from "../../styledComponents/buttons/buttons";
 const EpisodesContainer = ({ episodes }) => {
   const [selectedEpisode, setSelectedEpisode] = useState(episodes[0]);
-  useEffect(()=>{
-  })
+  const nextEpisode = () => {
+    const next = +selectedEpisode.episode_number;
+    if (next < episodes.length) {
+      setSelectedEpisode(episodes[next]);
+    }
+  };
+  const prevEpisode = () => {
+    const prev = selectedEpisode.episode_number - 2;
+    if (prev >= 0) {
+      setSelectedEpisode(episodes[prev]);
+    }
+  };
+
   return (
     <>
-      <section className={classes.episodes_container}>
-        <div>{`${episodes.length} capítulos`}</div>
-        <section className={classes.episodes_sub_container}>
-          {episodes.map((ep, i) => (
-            <div
-              className={
-                selectedEpisode.id === ep.id
-                  ? classes.selected_episode
-                  : classes.episode
-              }
-              onClick={() => setSelectedEpisode(ep)}
-            >{`capítulo ${i + 1}`}</div>
-          ))}
-        </section>
-      </section>
-      <section>
-        <section className={classes.selected_episode_container}>
+      <Container
+        desktop={{ display: "none" }}
+      >{`${episodes.length} capítulos`}</Container>
+      <Container desktop={{ justifyContent: "space-between", width: "55vw" }}>
+        <Container desktop={{ width: "30vw" }} mobile={{ width: "60vw" }}>
+          <Container desktop={{display:'none'}}>
+            <MoreButton onClick={prevEpisode}>-</MoreButton>
+            <Episode
+              selected={true}
+            >{`capítulo ${selectedEpisode.episode_number}`}</Episode>
+            <MoreButton onClick={nextEpisode}>+</MoreButton>
+          </Container>
+          <Container mobile={{ display: "none" }} desktop={{width:'100%'}}>
+            {`${episodes.length} capítulos`}
+            <EpisodesContainerStyle>
+              {episodes.map((ep, i) => (
+                <Episode
+                  selected={selectedEpisode.id === ep.id}
+                  onClick={() => setSelectedEpisode(ep)}
+                >{`capítulo ${i + 1}`}</Episode>
+              ))}
+            </EpisodesContainerStyle>
+          </Container>
+        </Container>
+        <InformationEpisode>
           <div>
-            <img src={`https://image.tmdb.org/t/p/original${selectedEpisode?.still_path}`}
-            className={classes.img_poster}
+            <img
+              style={{width:'100%'}}
+              src={`https://image.tmdb.org/t/p/original${selectedEpisode?.still_path}`}
             />
           </div>
-          <div className={classes.content_container}>
+          <ContentEpisodeContainer>
             <div>{`${selectedEpisode?.episode_number}.${selectedEpisode?.name}`}</div>
-            <p className={classes.overview}>{selectedEpisode?.overview}</p>
+            <EpisodeOverview>{selectedEpisode?.overview}</EpisodeOverview>
             <div></div>
-          </div>
-        </section>
-        <section></section>
-      </section>
+          </ContentEpisodeContainer>
+        </InformationEpisode>
+      </Container>
     </>
   );
 };
