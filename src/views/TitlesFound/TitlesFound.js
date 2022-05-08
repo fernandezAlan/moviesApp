@@ -37,11 +37,15 @@ const TitlesFound = () => {
   }, []);
 
   return (
-    <div>
-      <section>
+    <Container mobile={{height:'80vh',justifyContent:'space-evenly',flexDirection:'column'}}>
+      <Container desktop={{flexDirection:'column'}} mobile={{display:"none"}}>
         <h1>{`resultado de la búsqueda de ${params.name}`}</h1>
         <h3>{`total de resultados: ${titlesFound.totalResults}`}</h3>
-      </section>
+      </Container>
+      <Container desktop={{display:'none'}} mobile={{display:'block'}}>
+        <div>{`buscaste: ${params.name.toUpperCase()}`}</div>
+        <div>{`resultados: ${titlesFound.totalResults}`}</div>
+      </Container>
       <Container desktop={{flexDirection:"column"}}>
         <AllTitles
           titlesInfo={titlesFound}
@@ -51,7 +55,7 @@ const TitlesFound = () => {
           getMediaType={()=>(page)=>setTitlesFound({ name, page })}
         />
       </Container>
-    </div>
+    </Container>
   );
 };
 

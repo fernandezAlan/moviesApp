@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+
+
 export const PrincipalTitle = styled.h1`
   color: white;
   font-size: 40px;
@@ -29,4 +31,8 @@ font-size: 20px;
 @media (max-width: 800px){
   font-size: 25px;
 }
+`
+export const TitlePerson = styled.h6`
+font-size: 25px;
+font-weight: bold;
 `

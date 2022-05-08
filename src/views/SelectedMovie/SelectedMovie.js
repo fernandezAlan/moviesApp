@@ -22,10 +22,6 @@ const SelectedMovie = () => {
       dispatch(clearSelectedMovie());
     };
   }, [param]);
-  useEffect(() => {
-    console.log("selectedMovie:", selectedMovie);
-    console.log("credits", credits);
-  }, [selectedMovie, credits]);
 
   return (
     <SelectedTitle selectedTitle={selectedMovie} credits={credits}/>

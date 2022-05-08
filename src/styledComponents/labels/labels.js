@@ -23,4 +23,17 @@ export const GenreLabel = styled.div`
   &:active {
     background-color: #250038;
   }
+  @media (max-width: 800px) {
+    font-size: 15px;
+    width: 100px;
+  }
 `;
+ export const NameLabel = styled.p`
+ background-color:#610094;
+ height:30px;
+ z-index:2;
+ width:100px;
+ overflow: hidden;
+ white-space: nowrap;
+text-overflow: ellipsis;
+ `

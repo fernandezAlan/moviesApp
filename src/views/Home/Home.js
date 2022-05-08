@@ -5,6 +5,7 @@ import {
   ButtonFilter,
   NextPrevButton,
   SearchButton,
+  MoreButton,
 } from "../../styledComponents/buttons/buttons";
 import { filtersMovie, filtersTv } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,6 +30,7 @@ import {
 import { GenreLabel } from "../../styledComponents/labels/labels";
 import { SubTitle } from "../../styledComponents/texts/texts";
 import { addTVgenres, addTVSameGenre } from "../../reducers/TvShowsReducer";
+import MoreFiltersModal from "../../components/MoreFiltersModal/MoreFiltersModal";
 
 const Home = () => {
   /*------------------USE STATE-----------------*/
@@ -108,8 +110,11 @@ const Home = () => {
   return (
     <div>
       <Container>
-        <Container desktop ={{width:"25vw", height:"85vh"}} mobile={{display:'none'}}>
-          <Container desktop = {{justifyContent:"start"}}>
+        <Container
+          desktop={{ width: "25vw", height: "85vh" }}
+          mobile={{ display: "none" }}
+        >
+          <Container desktop={{ justifyContent: "start" }}>
             <SubTitle>Géneros disponibles</SubTitle>
             <Container>
               {genres.map((genre) => {
@@ -125,9 +130,9 @@ const Home = () => {
             </Container>
           </Container>
         </Container>
-        <Container 
-        desktop={{flexDirection:"column", width:"70vw", height:"85vh"}}
-        mobile={{flexDirection:"column", width:"100vw", height:'95vh'}}
+        <Container
+          desktop={{ flexDirection: "column", width: "70vw", height: "85vh" }}
+          mobile={{ flexDirection: "column", width: "100vw", height: "95vh" }}
         >
           <section>
             <MediaTypeSelector
@@ -144,7 +149,7 @@ const Home = () => {
               Series
             </MediaTypeSelector>
           </section>
-          <section>
+          <Container>
             {filter.map((option) => (
               <ButtonFilter
                 selected={typeFilter === option.type}
@@ -153,7 +158,17 @@ const Home = () => {
                 {option.label.toUpperCase()}
               </ButtonFilter>
             ))}
-          </section>
+            <MoreFiltersModal
+              filters={filter}
+              selected={typeFilter}
+              selectFilter={(option) => setSelectedFilters(option)}
+              genres={genres}
+              genreSelectedId={genreSelected?.id}
+              selectGenre={selectGenre}
+            >
+              +
+            </MoreFiltersModal>
+          </Container>
           {state[typeFilter] ? (
             <AllTitles
               titlesInfo={state[typeFilter]}
@@ -171,12 +186,13 @@ const Home = () => {
                   : setPrevPageTV({ type: typeFilter })
               }
               getMediaType={() => {
-                return (page)=>addTitles({
-                  mediaType: selectedMediaType,
-                  genreId: genreSelected?.id,
-                  page: page,
-                  type: typeFilter,
-                })
+                return (page) =>
+                  addTitles({
+                    mediaType: selectedMediaType,
+                    genreId: genreSelected?.id,
+                    page: page,
+                    type: typeFilter,
+                  });
               }}
             />
           ) : (

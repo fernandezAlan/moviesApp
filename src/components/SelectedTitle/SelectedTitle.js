@@ -11,49 +11,75 @@ import InformationContainer from "../InformationContainer/InformationContainer";
 import PreviousTitles from "../PreviousTitles/PreviousTitles";
 import Director from "../Director/Director";
 import Button from "../Button/Button";
-import { RateNumber, DateContainer } from "../../styledComponents/texts/texts";
+import { RateNumber, DateContainer,TitlePerson } from "../../styledComponents/texts/texts";
+import {
+  Container,
+  PosterContainer,
+  SelectTitleContainer,
+  HomepageLink,
+  LinkToHomePage,
+  InfoContainer,
+  CrewContainer,
+  DirectorContainer,
+  ActorsContainer
+} from "../../styledComponents/containers/containers";
 
 const SelectedTitle = ({ selectedTitle, credits, type }) => {
   const navigate = useNavigate();
   return (
     <div>
       {selectedTitle && credits ? (
-        <>
-          <div className={classes.container}>
-            <section className={classes.sub_container}>
-              <div className={classes.img_container}>
-                <div className={classes.genre_container}>
+        <Container desktop={{ flexDirection: "column" }}>
+          <h3 style={{ textAlign: "center", marginTop: "30px" }}>
+            {selectedTitle.title ? selectedTitle.title : selectedTitle.name}
+          </h3>
+          <SelectTitleContainer>
+            <Container
+              desktop={{
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "start",
+              }}
+            >
+              <PosterContainer>
+                <Container
+                  desktop={{
+                    justifyContent: "space-between",
+                    flexWrap: "nowrap",
+                  }}
+                  mobile={{
+                    justifyContent: "space-between",
+                    flexWrap: "nowrap",
+                  }}
+                >
                   {selectedTitle?.genres?.map((genre) => (
                     <Genre genreName={genre.name} />
                   ))}
-                </div>
+                </Container>
                 <Images singleURL={selectedTitle.poster_path} />
                 <a href={selectedTitle.homepage}>
-                  <div
-                    className={classes.homepageLink}
-                    onMouseEnter={() =>
-                      toggleElement("link_to_homepage", "block", "enter")
-                    }
+                  <HomepageLink
+                    onMouseEnter={() =>{
+                      toggleElement("link_to_homepage", "flex", "enter")
+                    }}
                     onMouseLeave={() =>
-                      toggleElement("link_to_homepage", "block", "leave")
+                      toggleElement("link_to_homepage", "flex", "leave")
                     }
                   >
-                    <div id="link_to_homepage" style={{ display: "none" }}>
+                    <LinkToHomePage id="link_to_homepage">
                       <span>visitar la página oficial</span>
-                    </div>
-                  </div>
+                    </LinkToHomePage>
+                  </HomepageLink>
                 </a>
-              </div>
-            </section>
-            <section className={classes.info_movie_container}>
-              <section>
-                <h3 className={classes.title}>
-                  {selectedTitle.title
-                    ? selectedTitle.title
-                    : selectedTitle.name}
-                </h3>
+              </PosterContainer>
+            </Container>
+            <InfoContainer>
+              <Container
+                desktop={{ flexDirection: "column", alignItems: "center",justifyContent:'start'}}
+                mobile={{ flexDirection: "column", alignItems: "center" }}
+              >
                 <InformationContainer information={selectedTitle.overview} />
-                <section className={classes.additional_data}>
+                <Container desktop={{ flexDirection: "column" }}>
                   <section>
                     <div>
                       <strong>fecha de estreno:</strong>
@@ -72,28 +98,14 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                       </RateNumber>
                     </div>
                   </section>
-                  <section>
+                  <Container mobile={{display:'none'}}>
                     <PreviousTitles
                       type="películas"
                       name={selectedTitle.title}
                       titles={selectedTitle.previewSimilarMovies}
                     />
-                  </section>
-                </section>
-                {false ? (
-                  <CollectionLink
-                    name={selectedTitle?.belongs_to_collection?.name}
-                    posterPath={
-                      selectedTitle?.belongs_to_collection?.poster_path
-                    }
-                    goToCollection={() =>
-                      navigate(
-                        "/collection/" +
-                          selectedTitle?.belongs_to_collection?.id
-                      )
-                    }
-                  />
-                ) : null}
+                  </Container>
+                </Container>
                 {type === "tvserie" ? (
                   <div className={classes.season_container}>
                     <span>{`${selectedTitle.number_of_seasons} TEMPORADA${
@@ -105,13 +117,13 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                     />
                   </div>
                 ) : null}
-              </section>
-            </section>
-            <section className={classes.actors_container}>
+              </Container>
+            </InfoContainer>
+            <CrewContainer>
               {credits.director ? (
                 <section>
-                  <h6 className={classes.title_person}>Director</h6>
-                  <div className={classes.director_container}>
+                  <TitlePerson>Director</TitlePerson>
+                  <DirectorContainer>
                     {credits.director.map((dir) => (
                       <Director
                         name={dir.name}
@@ -119,13 +131,13 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                         goToPersonPage={() => navigate("/person/" + dir.id)}
                       />
                     ))}
-                  </div>
+                  </DirectorContainer>
                 </section>
               ) : null}
               {type === "tvserie" ? (
                 <section>
-                  <h6 className={classes.title_person}>creado por</h6>
-                  <div className={classes.director_container}>
+                  <TitlePerson>creado por</TitlePerson>
+                  <DirectorContainer>
                     {selectedTitle.created_by.map((dir) => (
                       <Director
                         name={dir.name}
@@ -133,11 +145,11 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                         goToPersonPage={() => navigate("/person/" + dir.id)}
                       />
                     ))}
-                  </div>
+                  </DirectorContainer>
                 </section>
               ) : null}
-              <section className={classes.actors_sub_container}>
-                <h6 className={classes.title_person}>casting</h6>
+              <ActorsContainer>
+                <TitlePerson>casting</TitlePerson>
                 {credits.cast.map((actor) => (
                   <ActorCasting
                     ActorName={actor.name}
@@ -146,10 +158,10 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                     goToPersonPage={() => navigate("/person/" + actor.id)}
                   />
                 ))}
-              </section>
-            </section>
-          </div>
-        </>
+              </ActorsContainer>
+            </CrewContainer>
+          </SelectTitleContainer>
+        </Container>
       ) : (
         <span>loading</span>
       )}

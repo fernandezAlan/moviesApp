@@ -2,7 +2,9 @@ import React from "react";
 import classes from "./moviesContainer.module.css";
 import { toggleElement } from "../../utils/index";
 import { MediaTypeLabel } from "../../styledComponents/labels/labels.js";
-import { CardContainer } from "../../styledComponents/containers/containers";
+import { CardContainer, Container } from "../../styledComponents/containers/containers";
+import { NameLabel } from "../../styledComponents/labels/labels.js";
+import { Paragraph } from "../../styledComponents/texts/texts";
 const TitleContainer = ({
   imgURL,
   name,
@@ -48,6 +50,9 @@ const TitleContainer = ({
           alt="movie_poster"
         />
       </div>
+      <Container desktop={{display:'none'}} mobile={{display:'block'}}>
+      <NameLabel>{name}</NameLabel>
+      </Container>
     </CardContainer>
   );
 };

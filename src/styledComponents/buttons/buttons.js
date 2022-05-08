@@ -21,6 +21,7 @@ export const NextPrevButton = styled.button`
   @media (max-width: 800px){
     width: 40px;
     height: 40px;
+    font-size: 25px;
   }
 `;
 export const ButtonFilter = styled.button`
@@ -38,6 +39,20 @@ export const ButtonFilter = styled.button`
     font-size: 25px;
   }
 `;
+export const ButtonFilterModal= styled.button`
+margin: 10px;
+background-color: transparent;
+border: 0px solid transparent;
+cursor: pointer;
+color: ${(props) => (props.selected ? "white" : "gray")};
+outline: none;
+&:focus {
+  outline: none;
+}
+@media (max-width: 800px){
+ width:100px
+}
+`
 export const MediaTypeSelector = styled.button`
   border: solid 0px;
   font-weight: bold;
@@ -61,7 +76,21 @@ export const MediaTypeSelector = styled.button`
     font-size: 35px;
   }
 `;
-
+export const MoreButton = styled.button`
+width: 40px;
+height: 40px;
+background-color: #610094;
+color: white;
+border: 0px;
+border-radius: 30px;
+cursor: pointer;
+margin: 5px;
+outline: none;
+font-size: 25px;
+&:focus {
+  outline: none;
+}
+`
 export const SearchButton = styled.button`
   color: white;
   background-color: #610094;
