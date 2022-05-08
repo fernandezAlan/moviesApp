@@ -8,7 +8,7 @@ const Director  = ({name,imgURL,goToPersonPage})=>{
     <div className={classes.container} onClick={goToPersonPage}>
         <section >
             <img 
-            src={`https://image.tmdb.org/t/p/original${imgURL}`} 
+            src={ imgURL ? `https://image.tmdb.org/t/p/original${imgURL}`: "https://epoje.es/wp-content/uploads/usuario.jpg"} 
             alt={'foto del director'}
             className={classes.img_director}
             />

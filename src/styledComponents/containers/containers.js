@@ -169,3 +169,6 @@ width: 15vw;
   margin-bottom:5vh
   }
 `
+export const SeasonContainer = styled.div`
+margin:30px;
+`

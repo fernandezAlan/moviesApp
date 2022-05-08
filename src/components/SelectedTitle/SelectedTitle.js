@@ -11,7 +11,11 @@ import InformationContainer from "../InformationContainer/InformationContainer";
 import PreviousTitles from "../PreviousTitles/PreviousTitles";
 import Director from "../Director/Director";
 import Button from "../Button/Button";
-import { RateNumber, DateContainer,TitlePerson } from "../../styledComponents/texts/texts";
+import {
+  RateNumber,
+  DateContainer,
+  TitlePerson,
+} from "../../styledComponents/texts/texts";
 import {
   Container,
   PosterContainer,
@@ -21,7 +25,8 @@ import {
   InfoContainer,
   CrewContainer,
   DirectorContainer,
-  ActorsContainer
+  ActorsContainer,
+  SeasonContainer,
 } from "../../styledComponents/containers/containers";
 
 const SelectedTitle = ({ selectedTitle, credits, type }) => {
@@ -59,8 +64,8 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                 <Images singleURL={selectedTitle.poster_path} />
                 <a href={selectedTitle.homepage}>
                   <HomepageLink
-                    onMouseEnter={() =>{
-                      toggleElement("link_to_homepage", "flex", "enter")
+                    onMouseEnter={() => {
+                      toggleElement("link_to_homepage", "flex", "enter");
                     }}
                     onMouseLeave={() =>
                       toggleElement("link_to_homepage", "flex", "leave")
@@ -73,39 +78,50 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                 </a>
               </PosterContainer>
             </Container>
-            <InfoContainer>
-              <Container
-                desktop={{ flexDirection: "column", alignItems: "center",justifyContent:'start'}}
-                mobile={{ flexDirection: "column", alignItems: "center" }}
-              >
-                <InformationContainer information={selectedTitle.overview} />
-                <Container desktop={{ flexDirection: "column" }}>
-                  <section>
-                    <div>
-                      <strong>fecha de estreno:</strong>
-                      <DateContainer>
-                        {formatDate(
-                          selectedTitle.release_date
-                            ? selectedTitle.release_date
-                            : selectedTitle.first_air_date
-                        )}
-                      </DateContainer>
-                    </div>
-                    <div>
-                      <strong>puntuación:</strong>
-                      <RateNumber rate={+selectedTitle.vote_average}>
-                        {selectedTitle.vote_average}
-                      </RateNumber>
-                    </div>
-                  </section>
-                  <Container mobile={{display:'none'}}>
-                    <PreviousTitles
-                      type="películas"
-                      name={selectedTitle.title}
-                      titles={selectedTitle.previewSimilarMovies}
-                    />
+            <Container desktop={{flexDirection:'column'}}>
+              <InfoContainer>
+                <Container
+                  desktop={{
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "start",
+                  }}
+                  mobile={{
+                    flexDirection: "column-reverse",
+                    alignItems: "center",
+                  }}
+                >
+                  <InformationContainer information={selectedTitle.overview} />
+                  <Container desktop={{ flexDirection: "column" }}>
+                    <section>
+                      <div>
+                        <strong>fecha de estreno:</strong>
+                        <DateContainer>
+                          {formatDate(
+                            selectedTitle.release_date
+                              ? selectedTitle.release_date
+                              : selectedTitle.first_air_date
+                          )}
+                        </DateContainer>
+                      </div>
+                      <div>
+                        <strong>puntuación:</strong>
+                        <RateNumber rate={+selectedTitle.vote_average}>
+                          {selectedTitle.vote_average}
+                        </RateNumber>
+                      </div>
+                    </section>
+                    <Container mobile={{ display: "none" }}>
+                      <PreviousTitles
+                        type="películas"
+                        name={selectedTitle.title}
+                        titles={selectedTitle.previewSimilarMovies}
+                      />
+                    </Container>
                   </Container>
                 </Container>
+              </InfoContainer>
+              <SeasonContainer>
                 {type === "tvserie" ? (
                   <div className={classes.season_container}>
                     <span>{`${selectedTitle.number_of_seasons} TEMPORADA${
@@ -117,8 +133,8 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                     />
                   </div>
                 ) : null}
-              </Container>
-            </InfoContainer>
+              </SeasonContainer>
+            </Container>
             <CrewContainer>
               {credits.director ? (
                 <section>
