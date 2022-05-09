@@ -26,9 +26,6 @@ const SelectedTvSerie = () => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log("SELECTED TV SERIE:", { selectedTvSerie, tvSerieCredits });
-  }, [selectedTvSerie, tvSerieCredits]);
 
   return (
     <SelectedTitle

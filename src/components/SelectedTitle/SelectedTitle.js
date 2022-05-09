@@ -144,7 +144,7 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                       <Director
                         name={dir.name}
                         imgURL={dir.profile_path}
-                        goToPersonPage={() => navigate("/person/" + dir.id)}
+                        //goToPersonPage={() => navigate("/person/" + dir.id)}
                       />
                     ))}
                   </DirectorContainer>
@@ -158,7 +158,7 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                       <Director
                         name={dir.name}
                         imgURL={dir.profile_path}
-                        goToPersonPage={() => navigate("/person/" + dir.id)}
+                        //goToPersonPage={() => navigate("/person/" + dir.id)}
                       />
                     ))}
                   </DirectorContainer>
@@ -171,7 +171,7 @@ const SelectedTitle = ({ selectedTitle, credits, type }) => {
                     ActorName={actor.name}
                     characterName={actor.character}
                     imgURL={actor.profile_path}
-                    goToPersonPage={() => navigate("/person/" + actor.id)}
+                    //goToPersonPage={() => navigate("/person/" + actor.id)}
                   />
                 ))}
               </ActorsContainer>

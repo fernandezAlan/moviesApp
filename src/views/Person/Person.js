@@ -11,7 +11,7 @@ import Image from "../../components/Images/Images";
 import InformationContainer from "../../components/InformationContainer/InformationContainer";
 import PersonStatistics from "../../components/PersonStatistics/PersonStatistics";
 import { addMovieGenres } from "../../reducers/moviesReducer";
-
+import { Container,PersonBio } from "../../styledComponents/containers/containers";
 const Person = () => {
   /*------USE PARAMS-------*/
   const params = useParams();
@@ -33,25 +33,20 @@ const Person = () => {
     };
   }, []);
 
-
   return (
     <div>
       {selectedPerson && personCredits ? (
-        <div className={classes.actor_container}>
-          <section className={classes.sub_container}>
-            <div className={classes.circle_container}>
-              <div className={classes.circle_bg}></div>
-            </div>
-            <section className={classes.img_container}>
-              <Image allImg={selectedPerson?.allImg?.profiles} />
-            </section>
-            <section>
-              <PersonStatistics />
-            </section>
-            <div className={classes.biography}>
-              <InformationContainer information={selectedPerson.biography} />
-            </div>
-          </section>
+        <div>
+          <Container>
+            <Container
+              desktop={{ width: "430px", height: "200px",alignItems:'start' }}
+            >
+              <Container desktop={{ width: "30%",height:'100%' }} mobile={{ width: "40%" }}>
+                <Image allImg={selectedPerson?.allImg?.profiles} />
+              </Container>
+              <PersonBio>{selectedPerson.biography}</PersonBio>
+            </Container>
+          </Container>
         </div>
       ) : (
         <span>Loading..</span>

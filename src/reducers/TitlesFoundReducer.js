@@ -31,6 +31,10 @@ export const titlesFoundSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(setTitlesFound.fulfilled, (state, action) => {
+      const filteredResults = action.payload.results.filter(
+        (e) => e.media_type !== "person"
+      );
+      action.payload.results= filteredResults
       state.results.push(action.payload);
       state.totalPages = action.payload.total_pages;
       state.totalResults = action.payload.total_results;

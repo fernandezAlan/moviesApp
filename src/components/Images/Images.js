@@ -33,26 +33,6 @@ const Image = ({ allImg, singleURL, title }) => {
           src={`https://image.tmdb.org/t/p/original${selectedURL}`} 
           className={classes.principal_img}
           />
-      {allImg ? (
-        <>
-          <div id={'all_img'} className={classes.container_img}>
-            {allImg.map((img, i) => (
-              <div className={classes.mini_img_container}>
-              <img
-                src={`https://image.tmdb.org/t/p/original${img.file_path}`}
-                id={`img_${i}`}
-                className={classes.mini_img}
-                onClick={()=>{
-                    setSelectedIndex(i)
-                    setSelectedURL(img.file_path)
-                }}
-              />
-              <div className={classes.line}></div>
-              </div>
-            ))}
-          </div>
-        </>
-      ) : null}
     </>
   );
 };

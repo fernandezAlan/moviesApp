@@ -30,6 +30,7 @@ const TitlesFound = () => {
     }
   }, [params, titlesFound]);
 
+
   useEffect(() => {
     return () => {
       dispatch(clearTitlesFound());

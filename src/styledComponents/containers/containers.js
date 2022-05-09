@@ -238,3 +238,20 @@ export const SeasonContainer = styled.div`
  margin: 10px;
  padding: 20px;
  `
+ export const PersonBio = styled.p`
+ width: 70%;
+ height: 100%;
+ padding: 15px;
+ overflow-y: scroll;
+ background-color:#610094;
+ &::-webkit-scrollbar {
+  width: 5px;
+}
+&::-webkit-scrollbar-track {
+  background: transparent;
+}
+&::-webkit-scrollbar-thumb {
+  background-color: #610094; 
+  border-radius: 20px;
+}
+ `
