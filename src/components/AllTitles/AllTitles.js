@@ -98,7 +98,7 @@ const AllTitles = ({
         <NextPrevButton onClick={prevPage}>-</NextPrevButton>
         <ActualPage>{`página ${page}`}</ActualPage>
         <NextPrevButton
-          onClick={()=>console.log('click')}
+          onClick={nextPage}
           disabled={page === titlesInfo.totalPages}
         >
           +
