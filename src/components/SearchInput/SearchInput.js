@@ -5,6 +5,7 @@ import { addFindMovie } from "../../reducers/moviesReducer";
 import { useNavigate } from "react-router-dom";
 import { SearchButton } from "../../styledComponents/buttons/buttons";
 import { SearchInputStyle } from "../../styledComponents/inputs/inputs";
+import {clearTitlesFound} from '../../reducers/TitlesFoundReducer'
 const SearchInput = ()=>{
     const [value,setValue] = useState('')
     const dispatch = useDispatch()
@@ -22,7 +23,11 @@ const SearchInput = ()=>{
         placeholder={'busca una película o serie'}
         />
         <SearchButton
-        onClick={()=> navigate('/search/'+value.replace(' ','%20'))}
+        onClick={()=> {
+            dispatch(clearTitlesFound())
+            navigate('/search/'+value.replace(' ','%20'))
+            setValue('')
+        }}
         >buscar</SearchButton>
     </div>
     )

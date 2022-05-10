@@ -8,6 +8,7 @@ import {
   Container,
   SubContainer,
 } from "../../styledComponents/containers/containers";
+
 const Navbar = () => {
   const navigate = useNavigate();
   return (

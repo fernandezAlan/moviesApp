@@ -13,9 +13,6 @@ export const NextPrevButton = styled.button`
       ? ""
       : `&:active{
   background-color:#380155;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   }`}
   outline: none;
   &:focus {

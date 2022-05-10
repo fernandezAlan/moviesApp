@@ -48,6 +48,7 @@ const AllTitles = ({
 
   /*----------- BUTTON'S FUNCTIONS------------------*/
   const nextPage = () => {
+    console.log('nextPage',{page,titlesInfo})
     if (page < titlesInfo.totalPages) {
       //hacemos dispatch para guardar el numero de página en el store
       dispatch(setNextPage());
@@ -97,7 +98,7 @@ const AllTitles = ({
         <NextPrevButton onClick={prevPage}>-</NextPrevButton>
         <ActualPage>{`página ${page}`}</ActualPage>
         <NextPrevButton
-          onClick={nextPage}
+          onClick={()=>console.log('click')}
           disabled={page === titlesInfo.totalPages}
         >
           +
