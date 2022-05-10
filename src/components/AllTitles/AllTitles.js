@@ -42,13 +42,13 @@ const AllTitles = ({
   //una vez que la página es correcta, buscamos los titulos en el store
   useEffect(() => {
     (function updateTitles() {
+      setPage(titlesInfo.actualPage)
       setTitles(titlesInfo.results[page - 1]?.results);
     })();
   }, [titlesInfo, page]);
 
   /*----------- BUTTON'S FUNCTIONS------------------*/
   const nextPage = () => {
-    console.log('nextPage',{page,titlesInfo})
     if (page < titlesInfo.totalPages) {
       //hacemos dispatch para guardar el numero de página en el store
       dispatch(setNextPage());

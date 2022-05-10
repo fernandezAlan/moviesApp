@@ -25,7 +25,6 @@ const TitlesFound = () => {
   /*--------USE DISPATCH---------*/
   useEffect(() => {
     if (!titlesFound?.results?.length) {
-     
       dispatch(setTitlesFound({ name, page }));
     }
   }, [params, titlesFound]);
