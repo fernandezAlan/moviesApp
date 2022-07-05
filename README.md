@@ -11,7 +11,7 @@ Esta es una App de películas y series en donde se puede visualizar datos del t�
    Puedes probar un demo de esta aplicación visitando [movies-series-app-psi.vercel.app](https://movies-series-app-psi.vercel.app/) 
 
   ## Instalación
-
+```bash
 npm install : para instalar las depencias necesarias
 ```
 
@@ -27,6 +27,6 @@ npm run build : compila todo el proyecto y tenerlo listo para producción
 npm start : inicia el proyecto en modo producción
 ```
 ## Capturas
-![](/public/movie_app_details.PNG).\
-![](/public/movie_app_home.PNG).\
+![](/public/movie_app_details.PNG)
+![](/public/movie_app_home.PNG)
 ![](/public/movie_app_mobile.PNG)
